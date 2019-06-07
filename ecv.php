@@ -3,14 +3,9 @@
 
     <head>
         <style>
-            * {
-                box-sizing: border-box;
-            }
-
-            body {
-                margin: 0;
-                font-family: sans-serif;
-            }
+            <link rel="stylesheet" href="css/default.css">
+            <link rel="stylesheet" href="css/layout.css">
+            <link rel="stylesheet" href="css/media-queries.css">
         </style>
     </head>
 
