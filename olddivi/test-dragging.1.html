@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+    <script>
+        function e(elt, type, id, x, y, width, height, fontsize, borderthickness, borderstyle, text, verticalallign, onclick, oninput) {
+            var newel;
+            switch (elt) {
+                case 'w':
+                case 'work':
+                    var newel = document.createElement('div');
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.cursor = 'pointer';
+                    newel.style.background = 'rgb(200,200,200)';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    document.body.append(newel);
+                    break;
+                case 'b':
+                case 'button':
+                case 'l':
+                case 'label':
+                    var newel = document.createElement('div');
+                    newel.style.boxSizing = 'border-box';
+                    newel.style.overflow = 'hidden';
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //            el.onclick = onclick;
+                    break;
+                case 'i':
+                case 'input':
+                    var newel = document.createElement('input');
+                    newel.type = type;
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //              el.onclick = onclick;
+                    //              el.oninput = oninput;
+                    break;
+            }
+        }
+
+
+        function addHandle(x, y, id) {
+            var el = document.createElement('div');
+            el.id = id;
+            el.style.position = 'absolute';
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.width = '15px';
+            el.style.height = '15px';
+            el.style.border = '2px solid black';
+            switch (id) {
+                case 'hndl-top':
+                case 'hndl-south':
+                    el.style.cursor = 'ns-resize';
+                    break;
+                case 'hndl-east':
+                case 'hndl-west':
+                    el.style.cursor = 'ew-resize';
+                    break;
+                default:
+                    el.style.cursor = 'move';
+            }
+            el.style.zIndex = 10;
+            document.body.append(el);
+
+            switch (id) {
+                case 'hndl-top':
+                    dragNElement(document.getElementById(id));
+                    break;
+                case 'hndl-south':
+                    dragSElement(document.getElementById(id));
+                    break;
+                case 'hndl-east':
+                    dragEElement(document.getElementById(id));
+                    break;
+                case 'hndl-west':
+                    dragWElement(document.getElementById(id));
+                    break;
+                default:
+                    dragWholeElement(document.getElementById(id));
+            }
+            return el;
+        }
+
+        var hndl = [];
+
+        e('w', '', 'theel', 500, 300, 500, 300, 20, 0, '', 'hello', '', '', '');
+        var el = document.getElementById('theel');
+        var ebr = el.getBoundingClientRect();
+        hndl[0] = addHandle(ebr.left - 8 + ebr.width / 2, ebr.top - 8, 'hndl-top');
+        hndl[1] = addHandle(ebr.left - 8, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 'hndl-east');
+        hndl[2] = addHandle(ebr.left - 8 + ebr.width / 2, ebr.top + ebr.height - 8, 'hndl-south');
+        hndl[3] = addHandle(ebr.right - 8, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 'hndl-west');
+        hndl[4] = addHandle(ebr.left, ebr.top, 'hndl-move');
+//        hndl[4] = addHandle(ebr.left - 8 + ebr.width / 2, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 'hndl-move');
+
+
+        function dragWholeElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                var el = document.getElementById('theel');
+                el.style.left = (el.offsetLeft - pos1) + 'px';
+                el.style.top = (el.offsetTop - pos2) + 'px';
+                var ebr = el.getBoundingClientRect();
+                hndl[0].style.top = (hndl[0].offsetTop - pos2) + 'px';
+                hndl[2].style.top = (hndl[2].offsetTop - pos2) + 'px';
+                hndl[0].style.left =
+                    hndl[2].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+                hndl[1].style.left = (hndl[1].offsetLeft - pos1) + 'px';
+                hndl[3].style.left = (hndl[3].offsetLeft - pos1) + 'px';
+                hndl[1].style.top =
+                    hndl[3].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+
+        function dragEElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                var el = document.getElementById('theel');
+                el.style.left = (el.offsetLeft - pos1) + 'px';
+                el.style.width = (el.offsetWidth + pos1) + 'px';
+                var ebr = el.getBoundingClientRect();
+                hndl[0].style.left =
+                    hndl[2].style.left =
+                    hndl[4].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragWElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                //                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                var el = document.getElementById('theel');
+                el.style.width = (el.offsetWidth - pos1) + 'px';
+                var ebr = el.getBoundingClientRect();
+                hndl[0].style.left =
+                    hndl[2].style.left =
+                    hndl[4].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragNElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                var el = document.getElementById('theel');
+                el.style.top = (el.offsetTop - pos2) + 'px';
+                el.style.height = (el.offsetHeight + pos2) + 'px';
+                var ebr = el.getBoundingClientRect();
+                hndl[1].style.top =
+                    hndl[3].style.top =
+                    hndl[4].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragSElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
+                var el = document.getElementById('theel');
+                el.style.height = (el.offsetHeight - pos2) + 'px';
+                var ebr = el.getBoundingClientRect();
+                hndl[1].style.top =
+                    hndl[3].style.top =
+                    hndl[4].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+
+
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

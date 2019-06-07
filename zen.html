@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+</body>
+<script>
+    function ce(elt, type, id, x, y, width, height, fontsize, borderthickness, borderstyle, text, verticalallign, onclick, oninput) {
+        var newel;
+        switch (elt) {
+            case 'b':
+            case 'button':
+            case 'l':
+            case 'label':
+                var newel = document.createElement('div');
+                newel.style.boxSizing = 'border-box';
+                newel.style.overflow = 'hidden';
+                //            el.onclick = onclick;
+                break;
+            case 'i':
+            case 'input':
+                var newel = document.createElement('input');
+                newel.type = type;
+                //              el.onclick = onclick;
+                //              el.oninput = oninput;
+                break;
+
+        }
+        newel.id = id;
+        newel.style.position = 'absolute';
+        newel.style.left = x + 'px';
+        newel.style.top = y + 'px';
+        newel.style.width = width + 'px';
+        newel.style.height = height + 'px';
+        newel.style.fontSize = fontsize + 'px';
+        newel.style.border = borderthickness + 'px ' + borderstyle;
+        newel.style.cursor = 'pointer';
+        newel.innerText = text;
+
+        switch (verticalallign) {
+            case 'center':
+            case 'c':
+                var pb = document.createElement('span');
+                pb.style.margin = '0';
+                pb.style.position = 'absolute';
+                pb.style.left = '50%';
+                pb.style.top = '50%;';
+                pb.style.marginRigth = '50%'
+                pb.style.transform = 'translate(-50%, -50%)';
+                pb.style.textAlign = 'center';
+                newel.appendChild(pb);
+                break;
+        }
+
+        document.body.append(newel);
+    }
+
+
+    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    var m = 0;
+    for (var i = 1; i < w-20; i += 17) {
+        var n = 0;
+        for (var j = 1; j < h-20; j += 17) {
+            ce('l', '', '1', i, j, 16, 16, 12, 1, 'solid black', m + ', ' + n, '', '', '');
+            n++;
+        }
+        m++;
+    }
+    console.log('count:' + (n*m));
+</script>
+
+</html>

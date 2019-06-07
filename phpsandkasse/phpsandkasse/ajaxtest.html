@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html5>
+
+<html>
+
+<head>
+  <script>
+    function showHint(funk, str) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log("responseText:" + this.responseText);
+          var v = JSON.parse(this.responseText);
+          for (var i = 0; i < v.test.length; i++) {
+            console.log(v.test[i].field + ' = ' + v.test[i].value);
+            document.getElementById("txtHint-" + v.test[i].field).innerHTML = v.test[i].value;
+          }
+          //document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "query.php?q=" + str + '&i=' + funk, true);
+      xmlhttp.send();
+    }
+  </script>
+</head>
+
+<body>
+
+  <p><b>Start typing a name in the input field below:</b></p>
+  <form>
+    First name: <input type="text" onkeyup="showHint('f1', this.value)"><br><br>
+    Last name: <input type="text" onkeyup="showHint('f2', this.value)"><br><br>
+    Address: <input type="text" onkeyup="showHint('f3', this.value)"><br><br>
+  </form>
+  <p>Suggestions A: <span id="txtHint-A"></span></p>
+  <p>Suggestions B: <span id="txtHint-B"></span></p>
+  <p>Suggestions C: <span id="txtHint-C"></span></p>
+  <p>Suggestions D: <span id="txtHint-D"></span></p>
+  <p>Suggestions E: <span id="txtHint-E"></span></p>
+</body>
+
+</html>

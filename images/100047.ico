@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Cache-Control" content="Public">
+	<meta http-equiv="Reply-To" content="webmaster@phpMyEdit.org">
+	<meta http-equiv="Content-Language" content="en-US">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<title>phpMyEdit.org</title>
+
+	<meta name="Description" content="phpMyEdit - Instant MySQL Table Editor and PHP Code Generator">
+	<meta name="Author" content="Ondrej Jombik, Doug Hockinson">
+	<meta name="Generator" content="Metafox/0.9.2 (production stable)">
+	<meta name="Copyright" content="Platon Group, http://platon.org/">
+	<meta name="Revisit-After" content="7 days">
+	<meta name="Resource-Type" content="document">
+	<style>
+		body {
+			background-image:  url(/themes/phpmyedit/images/leftborder.jpg);
+			background-repeat: repeat-y;
+		}
+		ul         { list-style-image: URL(/themes/phpmyedit/images/triangle.gif); }
+		ul.simple  { list-style-image: URL(/themes/phpmyedit/images/arrow_black.png); }
+		blockquote { background: URL(/themes/phpmyedit/images/quote.gif) no-repeat; }
+	</style>
+
+	<link type="image/png" rel="shortcut icon" href="/themes/phpmyedit/images/favicon.png">
+	<link href="/themes/phpmyedit/css/phpMyEzin.css"  rel="stylesheet" type="text/css">
+	<link href="/themes/phpmyedit/css/phpMyEdit.css"  rel="stylesheet" type="text/css">
+	<link href="/themes/phpmyedit/css/helpdesk_style.css"  rel="stylesheet" type="text/css">
+</head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0"
+	link="#000000" alink="#000000" vlink="#000000" bgcolor="#ffffff" text="#000000">
+
+<table background="/themes/phpmyedit/images/topborder.jpg" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+	<td height="85" width="300"><a title="phpMyEdit Home" href="/"><img src="/themes/phpmyedit/images/logo/phpmyedit_2.jpg" alt="" border="0" height="85" width="300"></a></td>
+	<td style="font-size: 11px;" height="85" width="*" valign="middle" align="center">
+		<br><b>Instant&nbsp;MySQL&nbsp;Table&nbsp;Editor
+		and PHP&nbsp;Code&nbsp;Generator</b></td>
+	<td height="85" width="178"><a title="phpMyEdit Home" href="/"><img src="/themes/phpmyedit/images/url.jpg" alt="" border="0" height="85" width="178"></a></td>
+</tr>
+</tbody>
+</table>
+
+<!-- /header function -->
+
+
+<!-- Begin main page -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" height="1" width="24"></td>
+
+<!-- Menu Cell -->
+
+<td style="padding: 10px 0px 0px;" valign="top" width="8%">
+			
+<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tbody>
+<tr class="menulink">
+	<td class="menulink-first" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink-first">
+		<a title="Home" href="/" style="text-decoration: none;">Home</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Features" href="/article.php?features" style="text-decoration: none;">Features</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Support" href="/article.php?support" style="text-decoration: none;">Support</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Commercial" href="/article.php?commercial" style="text-decoration: none;">Commercial</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Store" href="/shop/" style="text-decoration: none;">Store</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Customers" href="/article.php?customers" style="text-decoration: none;">Customers</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Download" href="/article.php?download" style="text-decoration: none;">Download</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Banners" href="/article.php?banners" style="text-decoration: none;">Banners</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Screenshots" href="/article.php?screenshots" style="text-decoration: none;">Screenshots</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="References" href="/article.php?references" style="text-decoration: none;">References</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Developers" href="/article.php?developers" style="text-decoration: none;">Developers</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Testimonials" href="/article.php?testimonials" style="text-decoration: none;">Testimonials</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="On the Net" href="/article.php?on-the-net" style="text-decoration: none;">On the Net</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Demo" href="/demo/" style="text-decoration: none;">Demo</a>&nbsp;</td>
+</tr>
+<tr class="menulink">
+	<td class="menulink" height="16" width="16">
+		<img src="/themes/phpmyedit/images/triangle.gif" border="0" height="16" width="16"></td>
+	<td class="menulink">
+		<a title="Donate" href="/article.php?donate" style="text-decoration: none;">Donate</a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+
+<!-- /Menu Cell -->
+
+<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" height="1" width="24"></td>
+<td style="padding: 5px 0px 0px;" valign="top">
+
+
+<h1>Document&nbsp;Not&nbsp;Found</h1>
+
+<blockquote>
+
+	<p>
+	Sorry, requested document was not found on&nbsp;our server.
+
+	<p>
+	Please check, if internet&nbsp;address&nbsp;(URL) is correctly typed
+	<br>or continue to&nbsp;the&nbsp;<a href="/">main&nbsp;page</a>.
+
+	<p>
+	You can let us know about this problem using website 
+	<a href="/section.php?feedback-form">feedback&nbsp;form</a>.
+
+	<p>
+	Thank&nbsp;you for&nbsp;your&nbsp;patience.
+
+</blockquote>
+
+</td>
+
+<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" height="1" width="24"></td>
+
+<td valign="top" align="center" width="178">
+
+<!-- POLLS -->
+<img alt="" src="/themes/phpmyedit/images/subtitle.gif" border="0" height="25" width="178">
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tr><td align="right">
+			<img alt="" src="/themes/phpmyedit/images/boxes3.gif" border="0" height="169" width="169">
+	</td></tr></table>
+
+<!-- NEWSLETTER -->
+<img alt="" src="/themes/phpmyedit/images/subtitle.gif" border="0" height="25" width="178">
+<b>phpMyEdit newsletter</b><br>
+<small>(low volume mailinglist)</small>
+<table border="0">
+<tr><td align="left">
+<small>Enter your e-mail address:<br>
+<form method="post" action="/">
+<input name="ezin_email" class="small" size="12" type="text">
+<br><input value="Subscribe" class="small" type="submit" name="ezin_save_email" style="font-size:11px;"></form></small>
+</td></tr></table>
+
+<!-- ICONS -->
+
+<!-- HOSTING -->
+<img alt="" src="/themes/phpmyedit/images/subtitle.gif" border="0" height="25" width="178">
+<small>Hosting provided by:</small><br>
+<a href="http://webhosting.platon.org/"><img src="/themes/phpmyedit/images/platon-webhosting-logo-inv31.gif" alt="Platon Webhosting" title="Platon Webhosting" border="0" height="31" vspace="8" width="134"></a>
+		</td>
+		<td width="8"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="6"></td>
+</tr>
+</tbody>
+</table>
+
+<!-- FOOTER -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="signature">
+<tbody>
+<tr>
+	<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="24"></td>
+	<td height="25" background="/themes/phpmyedit/images/footerline.gif" align="left">
+		<img alt="" src="/themes/phpmyedit/images/subtitle.gif" border="0" height="25" width="178"></td>
+	<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="24"></td>
+	<td><img alt="" src="/themes/phpmyedit/images/subtitle.gif" border="0" height="25" width="178"></td>
+	<td width="8"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="6"></td>
+</tr>
+<tr>
+	<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="24"></td>
+	<td align="right">
+		<b>phpMyEdit</b> is
+		an&nbsp;<i>Instant&nbsp;MySQL&nbsp;Table&nbsp;Editor and PHP&nbsp;Code&nbsp;Generator</i><br>
+		<!-- written&nbsp;in&nbsp;PHP<br> -->
+		Copyright&nbsp;&#169;&nbsp;2005-2012
+		<a href="http://platon.org/">Platon&nbsp;Group</a>
+		and&nbsp;<a href="/article.php?developers">contributors</a></td>
+	<td width="24"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="24"></td>
+
+	<td valign="top" align="right" width="169">
+		Website powered
+		by&nbsp;<a href="http://www.metafox.com/">Metafox&nbsp;CMS</a><br>
+		Design
+		by&nbsp;<a href="http://www.freewebtemplates.com/">FreeWebTemplates</a>
+	
+	</td>
+	<td width="8"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" width="6"></td>
+</tr>
+<tr>
+	<td colspan="5" height="8"><img alt="" src="/themes/phpmyedit/images/blank.gif" border="0" height="8"></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
+
+
+

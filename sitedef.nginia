@@ -1,0 +1,57 @@
+image                                                                   "almbrand.jpg"
+text                                                                    "**Har du tidligere søgt en stilling hos os?**"
+text                                                                    "Hvis du tidligere har søgt en stilling hos Alm. Brand, log da venligst ind her ved at angive dit brugernavn (din e-mailadresse) og din adgangskode (er tidligere fremsendt til din e-mailadresse)."
+text                                                                    "**Log ind her, hvis du er registreret**"
+email login                                                             "Brugernavn (e-mail)"
+password pw                                                             "Adgangskode"
+text                                                                    "[Glemt adgangskode?]($ResetPasswordLink)"
+text                                                                    "[Har du brug for hjælp?]($helpLink)"
+text                                                                    "Du søger nu stillingen:"
+text                                                                    "$positionTitle_ ([Se annonce]($adLink))"
+text                                                                    "Hvis du ikke har en profil, eller det er noget tid siden, du sendte din sidste ansøgning, skal du blot udfylde ansøgningsskemaet. En ny profil vil automatisk blive oprettet, og loginoplysninger til din profil vil blive fremsendt, når du har fået 'Gemt' eller 'Sendt' din ansøgning."
+text h3                                                                 "Persondata"
+textfield email confirm *                                               "Emailadresse"
+dropdown title < db.tiltaleform.name.alpha                              "Titel"
+text firstname *                                                        "Fornavn"
+text lastname *                                                         "Efternavn"
+text otherlastname                                                      "Andet efternavn"
+text address1 *                                                         "Adresse"
+text address2                                                           "Adresse 2"
+text postbox                                                            "Postbox"
+dropdown country db.countries.value,name,order.alpha default:dk         "Land"
+dropdown citisen db.countries.value,name,order.alpha default:dk         "Statsborgerskab"
+dropdown sex ["Mand", Kvinde", "Andet"]                                 "Køn"
+dropdown marital ["Gift", Samboende", "Ugift", "Andet"]                 "Civilstand"
+date birthdate dmy *                                                    "Fødselsdato"
+telephone privattelefon intl default:dk                                 "Privattelefon"
+telephone intl default:dk *                                             "Mobiltelefon"
+telephone intl default:dk                                               "Arbejdstelefon"
+
+checkbox tos default:false *true                                        "Ja, jeg accepterer"
+onload {mute:submitbuttons:true}
+onclick tos{mute:submitbuttons:tos}
+button save  {php:remember()} tag:submitbuttons                         "Gem"
+button submit {php:submit()}  tag:submitbuttons                         "Send ansøgning"
+
+table:applicant {
+ - email email
+ - password ascii50
+# - skal linkes til mange entities
+}
+
+table:tiltaleform {
+ - name
+} [["Hr."], ["Fru"], ["Frk."]]
+
+table:countries {
+ - value ascii2
+ - name  text40
+ - order int16
+} import:countries.json
+
+table:diallingcodes {
+  - name text40
+  - code ascii10
+} import:telephonecodes.csv separator:"," stringsinquotes:true
+
+

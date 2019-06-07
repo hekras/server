@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+</body>
+<script>
+    function ce(elt, type, id, x, y, width, height, fontsize, borderthickness, borderstyle, text, verticalallign, onclick, oninput) {
+        var newel;
+        switch (elt) {
+            case 'syear':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                var oel = document.createElement('option');
+                oel.value = '';
+                oel.innerText = '';
+                newel.append(oel);
+                for (var i = 2019; i > 1900; i--) {
+                    var oel = document.createElement('option');
+                    oel.value = i;
+                    oel.innerText = i;
+                    newel.append(oel);
+                }
+                break;
+            case 'smonth':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var arr = ['', 'Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober'
+                    , 'November', 'December'];
+                for (var i = 0; i < arr.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = arr[i];
+                    oel.innerText = arr[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'sday':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var arr = ['', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'
+                    , '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'
+                    , '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+                for (var i = 0; i < arr.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = arr[i];
+                    oel.innerText = arr[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'sphone':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var arr = ['+45', '+46', '+47', '+49', '+358'];
+                for (var i = 0; i < arr.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = arr[i];
+                    oel.innerText = arr[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'ssex':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var land = ['', 'mand', 'kvinde'];
+                for (var i = 0; i < land.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = land[i];
+                    oel.innerText = land[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'smari':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var land = ['', 'Gift', 'Samboende', 'Ugift', 'Andet'];
+                for (var i = 0; i < land.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = land[i];
+                    oel.innerText = land[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'scountry':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var land = ['Danmark', 'Sverige', 'Norge', 'Tyskland', 'Finland'];
+                for (var i = 0; i < land.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = land[i];
+                    oel.innerText = land[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'sziten':
+                var newel = document.createElement('select');
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                var land = ['', 'Danmark', 'Sverige', 'Norge', 'Tyskland', 'Finland'];
+                for (var i = 0; i < land.length; i++) {
+                    var oel = document.createElement('option');
+                    oel.value = land[i];
+                    oel.innerText = land[i];
+                    newel.append(oel);
+                }
+                break;
+            case 'b':
+            case 'button':
+                var newel = document.createElement('div');
+                newel.style.boxSizing = 'border-box';
+                newel.style.overflow = 'hidden';
+                newel.innerText = text;
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                newel.style.fontSize = fontsize + 'px';
+                newel.style.border = borderthickness + 'px ' + borderstyle;
+                newel.style.cursor = 'pointer';
+                //            el.onclick = onclick;
+                break;
+            case 'l':
+            case 'label':
+                var newel = document.createElement('div');
+                newel.style.boxSizing = 'border-box';
+                newel.style.overflow = 'hidden';
+                newel.innerText = text;
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                newel.style.height = height + 'px';
+                newel.style.fontSize = fontsize + 'px';
+                newel.style.border = borderthickness + 'px ' + borderstyle;
+                break;
+            case 'i':
+            case 'input':
+                var newel = document.createElement('input');
+                newel.type = type;
+                newel.value = text;
+                newel.id = id;
+                newel.style.position = 'absolute';
+                newel.style.left = x + 'px';
+                newel.style.top = y + 'px';
+                newel.style.width = width + 'px';
+                //                newel.style.height = height + 'px';
+                newel.style.fontSize = fontsize + 'px';
+                newel.style.border = borderthickness + 'px ' + borderstyle;
+                newel.style.cursor = 'pointer';
+                //              el.onclick = onclick;
+                //              el.oninput = oninput;
+                break;
+
+        }
+
+        switch (verticalallign) {
+            case 'center':
+            case 'c':
+                var pb = document.createElement('span');
+                pb.style.margin = '0';
+                pb.style.position = 'absolute';
+                pb.style.left = '50%';
+                pb.style.top = '50%;';
+                pb.style.marginRigth = '50%'
+                pb.style.transform = 'translate(-50%, -50%)';
+                pb.style.textAlign = 'center';
+                newel.appendChild(pb);
+                break;
+            case 'm': // mandatory
+                var pb = document.createElement('span');
+                pb.style.color = 'red';
+                pb.innerText = '*';
+                newel.appendChild(pb);
+                break;
+        }
+
+        document.body.append(newel);
+    }
+
+    // **Hello** 
+    function email_event() {
+        var ela = document.getElementById('emailb');
+        var elb = document.getElementById('emailb');
+        var x = {
+            navn: document.getElementById('emailb').value,
+            pass: document.getElementById('fornavn').value
+        };
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "/zen-job-sel.php?login=" + JSON.stringify(x), true);
+        xmlhttp.send();
+        console.log("email_event");
+    }
+
+
+
+    ce('l', '', '', 200, 10, 120, 120, 12, 1, 'solid black', 'Logo', '', '', '');
+    ce('l', '', '', 600, 10, 120, 120, 12, 0, 'solid black', 'Brugernavn', '', '', '');
+    ce('l', '', '', 600, 25, 80, 20, 12, 0, 'solid black', '(e-mail)', '', '', '');
+    ce('i', '', 'emaila', 690, 10, 80, 20, 12, 1, 'solid black', 'e-mail', '', '', '');
+    ce('l', '', '', 600, 50, 80, 20, 12, 0, 'solid black', 'Password', '', '', '');
+    ce('i', '', 'password', 690, 50, 80, 20, 12, 1, 'solid black', 'pass', '', '', '');
+    ce('b', '', '', 600, 80, 170, 20, 12, 0, 'solid black', 'Glemt adgangskode?', '', '', '');
+    ce('b', '', '', 600, 100, 170, 20, 12, 0, 'solid black', 'Har du brug for hjælp?', '', '', '');
+
+    var ypos = 250;
+    ce('l', '', '', 200, 250, 570, 20, 12, 1, 'solid black', 'Persondata', '', '', '');
+
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'E-mailadresse', 'm', '', '');
+    ce('i', '', 'emailb', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Bekræft E-mailadresse', 'm', '', '');
+    ce('i', '', 'emailc', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Titel', '', '', '');
+    ce('i', '', 'titel', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Fornavn', 'm', '', '');
+    ce('i', '', 'fornavn', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Efternavn', 'm', '', '');
+    ce('i', '', 'efternavn', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Andet efternavn', '', '', '');
+    ce('i', '', 'efternavn2', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Adresse', 'm', '', '');
+    ce('i', '', 'adresse', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Adress2', '', '', '');
+    ce('i', '', 'adresse2', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Postboks', '', '', '');
+    ce('i', '', 'postboks', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Postnr /by', 'm', '', '');
+    ce('i', '', 'postnr', 520, ypos, 50, 20, 12, 1, 'solid black', '', '', '', '');
+    ce('i', '', 'by', 580, ypos, 110, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Land', 'm', '', '');
+    ce('scountry', '', 'land', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Statsborgerskab', 'm', '', '');
+    ce('sziten', '', 'statsborgerskab', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'køn', '', '', '');
+    ce('ssex', '', 'statsborgerskab', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Civilstand', '', '', '');
+    ce('smari', '', 'statsborgerskab', 520, ypos, 170, 20, 12, 1, 'solid black', '', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Fødselsdato', 'm', '', '');
+    ce('sday', '', 'day', 520, ypos, 30, 20, 12, 1, 'solid black', '07', '', '', '');
+    ce('smonth', '', 'month', 560, ypos, 60, 20, 12, 1, 'solid black', '10', '', '', '');
+    ce('syear', '', 'year', 630, ypos, 60, 20, 12, 1, 'solid black', '1966', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Privattelefon', '', '', '');
+    ce('sphone', '', 'day', 520, ypos, 50, 20, 12, 1, 'solid black', '07', '', '', '');
+    ce('i', '', 'month', 580, ypos, 110, 20, 12, 1, 'solid black', '10', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Mobiltelefon', 'm', '', '');
+    ce('sphone', '', 'day', 520, ypos, 50, 20, 12, 1, 'solid black', '07', '', '', '');
+    ce('i', '', 'month', 580, ypos, 110, 20, 12, 1, 'solid black', '10', '', '', '');
+    ypos += 25;
+    ce('l', '', '', 200, ypos, 300, 20, 12, 0, 'solid black', 'Arbejdstelefon', '', '', '');
+    ce('sphone', '', 'day', 520, ypos, 50, 20, 12, 1, 'solid black', '07', '', '', '');
+    ce('i', '', 'month', 580, ypos, 110, 20, 12, 1, 'solid black', '10', '', '', '');
+    ypos += 25;
+
+    document.getElementById('emailb').addEventListener("focusout", email_event);
+
+
+
+</script>
+
+</html>

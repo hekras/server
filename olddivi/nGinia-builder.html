@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        margin: 0;
+        font-family: sans-serif;
+    }
+</style>
+
+<body>
+
+
+    <script>
+        function xxe(elt, type, id, x, y, width, height, fontsize, borderthickness, borderstyle, text, verticalallign, onclick, oninput) {
+            var newel;
+            switch (elt) {
+                case 'w':
+                    var newel = document.createElement('div');
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.background = 'rgb(200,200,200)';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.margin = '0';
+                    newel.style.padding = '0';
+                    document.body.append(newel);
+                    break;
+                case 'li':
+                    var newel = document.createElement('div');
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    //                    newel.style.cursor = 'pointer';
+                    //                    newel.style.background = 'rgb(200,200,200)';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    document.body.append(newel);
+                    break;
+                case 'g':
+                    var newel = document.createElement('div');
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    //                    newel.style.cursor = 'pointer';
+                    //                    newel.style.background = 'rgb(200,200,200)';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    document.body.append(newel);
+                    newel.addEventListener('mouseover', onclick);
+                    break;
+                case 'bb':
+                    var newel = document.createElement('div');
+                    newel.style.boxSizing = 'border-box';
+                    newel.style.overflow = 'hidden';
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    var pb = document.createElement('span');
+                    pb.style.position = 'absolute';
+                    pb.style.margin = '0';
+                    pb.style.left = '50%';
+                    pb.style.top = '50%';
+                    pb.style.transform = 'translate(-50%, -50%)';
+                    pb.style.textAlign = 'center';
+                    pb.innerText = text;
+                    newel.appendChild(pb);
+                    document.body.append(newel);
+                    break;
+
+
+
+
+
+                case 'b':
+                case 'button':
+                case 'l':
+                case 'label':
+                    var newel = document.createElement('div');
+                    newel.style.boxSizing = 'border-box';
+                    newel.style.overflow = 'hidden';
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //            el.onclick = onclick;
+                    break;
+                case 'i':
+                case 'input':
+                    var newel = document.createElement('input');
+                    newel.type = type;
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //              el.onclick = onclick;
+                    //              el.oninput = oninput;
+                    break;
+            }
+            return newel;
+        }
+
+
+        function addHandle(x, y, id) {
+            var el = document.createElement('div');
+            el.id = id;
+            el.style.position = 'absolute';
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.width = '15px';
+            el.style.height = '15px';
+            el.style.border = '2px solid black';
+            el.style.visibility = 'hidden';
+            switch (id) {
+                case 'hndl-top':
+                case 'hndl-south':
+                    el.style.cursor = 'ns-resize';
+                    break;
+                case 'hndl-east':
+                case 'hndl-west':
+                    el.style.cursor = 'ew-resize';
+                    break;
+                default:
+                    el.style.cursor = 'move';
+            }
+            el.style.zIndex = 10;
+            document.body.append(el);
+
+            switch (id) {
+                case 'hndl-top':
+                    dragNElement(document.getElementById(id));
+                    break;
+                case 'hndl-south':
+                    dragSElement(document.getElementById(id));
+                    break;
+                case 'hndl-east':
+                    dragEElement(document.getElementById(id));
+                    break;
+                case 'hndl-west':
+                    dragWElement(document.getElementById(id));
+                    break;
+                default:
+                    dragWholeElement(document.getElementById(id));
+            }
+            return el;
+        }
+
+        function dragWholeElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
+                if (multi) {
+                    for (var i = 0; i < multiElements.length; i++) {
+                        multiElements[i].style.left = (multiElements[i].offsetLeft - pos1) + 'px';
+                        multiElements[i].style.top = (multiElements[i].offsetTop - pos2) + 'px';
+                    }
+
+                } else {
+                    currentel.style.left = (currentel.offsetLeft - pos1) + 'px';
+                    currentel.style.top = (currentel.offsetTop - pos2) + 'px';
+                }
+                var ebr = currentel.getBoundingClientRect();
+                hndl[0].style.top = (hndl[0].offsetTop - pos2) + 'px';
+                hndl[2].style.top = (hndl[2].offsetTop - pos2) + 'px';
+                hndl[0].style.left =
+                    hndl[2].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+                hndl[1].style.left = (hndl[1].offsetLeft - pos1) + 'px';
+                hndl[3].style.left = (hndl[3].offsetLeft - pos1) + 'px';
+                hndl[1].style.top =
+                    hndl[3].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+
+        function dragEElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+                currentel.style.left = (currentel.offsetLeft - pos1) + 'px';
+                currentel.style.width = (currentel.offsetWidth + pos1) + 'px';
+                var ebr = currentel.getBoundingClientRect();
+                hndl[0].style.left =
+                    hndl[2].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+                hndl[4].style.left = ebr.left + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragWElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                //                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+                currentel.style.width = (currentel.offsetWidth - pos1) + 'px';
+                var ebr = currentel.getBoundingClientRect();
+                hndl[0].style.left =
+                    hndl[2].style.left = (ebr.left + ebr.width / 2 - 8) + 'px';
+                hndl[4].style.left = ebr.left + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragNElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
+                currentel.style.top = (currentel.offsetTop - pos2) + 'px';
+                currentel.style.height = (currentel.offsetHeight + pos2) + 'px';
+                var ebr = currentel.getBoundingClientRect();
+                hndl[1].style.top =
+                    hndl[3].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+                hndl[4].style.top = ebr.top + 'px';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function dragSElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
+                currentel.style.height = (currentel.offsetHeight - pos2) + 'px';
+                var ebr = currentel.getBoundingClientRect();
+                hndl[1].style.top =
+                    hndl[3].style.top = (ebr.top + ebr.height / 2 - 8) + 'px';
+                hndl[4].style.top = ebr.top + 'px';
+
+
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // rendering the grid - Version 3
+        function renderGrid(xsize, ysize, dx, dy, xpos, ypos) {
+            for (var y = ypos; y < ypos + ysize; y += dy) {
+                xxe('li', '', '', xpos, y, xsize - xpos, 0, 0, 1, 'dotted lightgreen', '', '%', '', '');
+            }
+            for (var x = xpos; x < xpos + xsize; x += dx) {
+                xxe('li', '', '', x, ypos, 0, ysize - ypos, 0, 1, 'dotted lightgreen', '', '%', '', '');
+            }
+            for (var y = ypos; y < ypos + ysize; y += dy) {
+                for (var x = xpos; x < xpos + xsize; x += dx) {
+                    var sss = '' + x + '-' + y;
+                    //                    xxe('g', '', '', x - 14, y - 14, 30, 30, 0, 0, '', '', '%', 'hello("' + sss + '")', '');
+                }
+            }
+        }
+
+        // generate random 20 char key
+        function getKey() {
+            const ppp = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var str = '';
+            for (var i = 0; i < 20; i++) {
+                str += ppp.charAt(Math.trunc(Math.random() * ppp.length));
+            }
+            return str;
+        }
+
+        // toggle handles visibility
+        function toggleHandles() {
+            var newstyle = (hndl[0].style.visibility === 'visible') ? 'hidden' : 'visible';
+            hndl[0].style.visibility =
+                hndl[1].style.visibility =
+                hndl[2].style.visibility =
+                hndl[3].style.visibility =
+                hndl[4].style.visibility = newstyle;
+        }
+
+        // add handles to DOM
+        function initHandles() {
+            hndl[0] = addHandle(0, 0, 'hndl-top');
+            hndl[1] = addHandle(0, 0, 'hndl-east');
+            hndl[2] = addHandle(0, 0, 'hndl-south');
+            hndl[3] = addHandle(0, 0, 'hndl-west');
+            hndl[4] = addHandle(0, 0, 'hndl-move');
+        }
+
+        // helper for docOnMouseDown - creates a new worker element
+        function doCreateNewElementAtPos(x, y, newid) {
+            var newel = xxe('w', '', newid, x, y, 50, 70, 20, 0, '', '', '', '', '');
+            return newel;
+        }
+
+        // helper for docOnMouseDown - sets all handles to element passed as attribute
+        function doSetAllHandles(ella) {
+            hndl[0].style.visibility =
+                hndl[1].style.visibility =
+                hndl[2].style.visibility =
+                hndl[3].style.visibility =
+                hndl[4].style.visibility = 'visible';
+            var ebr = ella.getBoundingClientRect();
+            hndl[2].style.left = hndl[0].style.left = (ebr.left - 8 + ebr.width / 2) + 'px';
+            hndl[0].style.top = (ebr.top - 8) + 'px';
+            hndl[1].style.left = (ebr.left - 8) + 'px';
+            hndl[3].style.top = hndl[1].style.top = (ebr.top + (ebr.height) / 2 - 8) + 'px';
+            hndl[2].style.top = (ebr.top + ebr.height - 8) + 'px';
+            hndl[3].style.left = (ebr.right - 8) + 'px';
+            hndl[4].style.left = ebr.left + 'px';
+            hndl[4].style.top = ebr.top + 'px';
+        }
+
+        // helper for docOnMouseDown - sets only move handle to element passed as attribute
+        function doSetMoveHandle(ella) {
+            hndl[0].style.visibility =
+                hndl[1].style.visibility =
+                hndl[2].style.visibility =
+                hndl[3].style.visibility = 'hidden';
+            hndl[4].style.visibility = 'visible';
+            var ebr = ella.getBoundingClientRect();
+            hndl[4].style.left = ebr.left + 'px';
+            hndl[4].style.top = ebr.top + 'px';
+        }
+
+        // helper for docOnMouseDown - gets element under mouse
+        function doGetElementUnderPos(x, y) {
+            return document.elementFromPoint(x, y);
+        }
+
+        // helper for docOnMouseDown - gets menu id under mouse, returns 'undefined' if no menu is found
+        function doGetMenuUnderPos(x, y) {
+            var els = document.querySelectorAll('[id^="menu-"');
+            for (var i = 0; i < els.length; i++) {
+                var a = els[i].getBoundingClientRect();
+                if ((x > a.left) && (x < a.right) && (y > a.top) && (y < a.bottom)) {
+                    return els[i].id;
+                }
+            }
+            return 'undefined';
+        }
+
+        // helper for docOnMouseDown - adds or removes an element from multi
+        function doCheckAndAddToMulti(ella) {
+            var found = -1;
+            for (var i = 0; i < multiElements.length; i++) {
+                if (multiElements[i].id === ella.id) {
+                    found = i;
+                }
+            }
+            if (found == -1) {
+                ella.style.border = '2px dotted black';
+                multiElements[multiElements.length] = ella;
+                multi = true;
+            }
+            else {
+                multiElements[found].style.border = '';
+                multiElements.splice(found, 1);
+                if (multiElements.length == 0) {
+                    multi = false;
+                    doSetAllHandles(ella);
+                }
+                else {
+                    currentel = multiElements[multiElements.length - 1];
+                    doSetMoveHandle(currentel);
+                }
+            }
+            //            hello("Trace multiElements.length:" + multiElements.length);
+        }
+
+        // helper for docOnMouseDown - removes all elements from multi
+        function doClearMulti() {
+            multi = false;
+            for (var i = 0; i < multiElements.length; i++) {
+                multiElements[i].style.border = '';
+            }
+            if (multiElements.length > 0) {
+                multiElements = [];
+            }
+        }
+
+        // helper for docOnMouseDown -  toggle handles visibility
+        function doToggleHandles() {
+            var newstyle = (hndl[0].style.visibility === 'visible') ? 'hidden' : 'visible';
+            hndl[0].style.visibility =
+                hndl[1].style.visibility =
+                hndl[2].style.visibility =
+                hndl[3].style.visibility =
+                hndl[4].style.visibility = newstyle;
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignTop() {
+            if (multi) {
+                var ytop = currentel.offsetTop;
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        multiElements[i].style.top = ytop + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignCenter() {
+            if (multi) {
+                var c1 = Math.trunc(currentel.offsetTop + currentel.offsetHeight / 2);
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        var c2 = Math.trunc((multiElements[i].offsetTop + multiElements[i].offsetHeight / 2));
+                        var dc = c2 - c1;
+                        multiElements[i].style.top = (multiElements[i].offsetTop - dc) + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignBottom() {
+            if (multi) {
+                var b1 = currentel.offsetTop + currentel.offsetHeight;
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        var b2 = multiElements[i].offsetTop + multiElements[i].offsetHeight;
+                        var db = b2 - b1;
+                        multiElements[i].style.top = (multiElements[i].offsetTop - db) + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignLeft() {
+            if (multi) {
+                var x1 = currentel.offsetLeft;
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        multiElements[i].style.left = x1 + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignMiddle() {
+            if (multi) {
+                var c1 = Math.trunc(currentel.offsetLeft + currentel.offsetWidth / 2);
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        var c2 = Math.trunc((multiElements[i].offsetLeft + multiElements[i].offsetWidth / 2));
+                        var dc = c2 - c1;
+                        multiElements[i].style.left = (multiElements[i].offsetLeft - dc) + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuAlignRight() {
+            if (multi) {
+                var b1 = currentel.offsetLeft + currentel.offsetWidth;
+                for (var i = 0; i < multiElements.length; i++) {
+                    if (multiElements[i] != currentel) {
+                        var b2 = multiElements[i].offsetLeft + multiElements[i].offsetWidth;
+                        var db = b2 - b1;
+                        multiElements[i].style.left = (multiElements[i].offsetLeft - db) + 'px';
+                    }
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuVertEvenSpace() {
+            if ((multi) && (multiElements.length > 2)) {
+                multiElements.sort(function (a, b) {
+                    return (b.offsetTop + b.offsetHeight) - (a.offsetTop + a.offsetHeight);
+                });
+                var ymax = multiElements[0].offsetTop + multiElements[0].offsetHeight;
+
+                multiElements.sort(function (a, b) {
+                    return a.offsetTop - b.offsetTop;
+                });
+                var ymin = multiElements[0].offsetTop;
+
+                var space = ymax - ymin;
+                for (var i = 0; i < multiElements.length; i++) {
+                    space -= multiElements[i].offsetHeight;
+                }
+
+                var dv = Math.trunc(space / (multiElements.length - 1));
+                var ypos = multiElements[0].offsetTop + multiElements[0].offsetHeight + dv;
+                for (var i = 1; i < multiElements.length; i++) {
+                    multiElements[i].style.top = ypos + 'px';
+                    ypos += multiElements[i].offsetHeight + dv;
+                }
+                doSetMoveHandle(currentel);
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuVertEvenCenter() {
+            if ((multi) && (multiElements.length > 2)) {
+                multiElements.sort(function (a, b) {
+                    return (a.offsetTop + (a.offsetHeight / 2)) - (b.offsetTop + (b.offsetHeight / 2));
+                });
+                var ymin = multiElements[0].offsetTop + multiElements[0].offsetHeight / 2;
+                var ymax = multiElements[multiElements.length - 1].offsetTop + multiElements[multiElements.length - 1].offsetHeight / 2;
+                var dv = Math.trunc((ymax - ymin) / (multiElements.length - 1));
+                var ypos = multiElements[0].offsetTop + (multiElements[0].offsetHeight / 2) + dv;
+                for (var i = 1; i < multiElements.length; i++) {
+                    multiElements[i].style.top = (ypos - (multiElements[i].offsetHeight / 2)) + 'px';
+                    ypos += dv;
+                }
+                doSetMoveHandle(currentel);
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuHorzEvenSpace() {
+            if ((multi) && (multiElements.length > 2)) {
+                multiElements.sort(function (a, b) {
+                    return (b.offsetLeft + b.offsetWidth) - (a.offsetLeft + a.offsetWidth);
+                });
+                var xmax = multiElements[0].offsetLeft + multiElements[0].offsetWidth;
+
+                multiElements.sort(function (a, b) {
+                    return a.offsetLeft - b.offsetLeft;
+                });
+                var xmin = multiElements[0].offsetLeft;
+
+                var space = xmax - xmin;
+                for (var i = 0; i < multiElements.length; i++) {
+                    space -= multiElements[i].offsetWidth;
+                }
+
+                var dv = Math.trunc(space / (multiElements.length - 1));
+                var xpos = multiElements[0].offsetLeft + multiElements[0].offsetWidth + dv;
+                for (var i = 1; i < multiElements.length; i++) {
+                    multiElements[i].style.left = xpos + 'px';
+                    xpos += multiElements[i].offsetWidth + dv;
+                }
+                doSetMoveHandle(currentel);
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuHorzEvenCenter() {
+            if ((multi) && (multiElements.length > 2)) {
+                multiElements.sort(function (a, b) {
+                    return (a.offsetLeft + (a.offsetWidth / 2)) - (b.offsetLeft + (b.offsetWidth / 2));
+                });
+                var xmin = multiElements[0].offsetWidth + multiElements[0].offsetWidth / 2;
+                var xmax = multiElements[multiElements.length - 1].offsetLeft + multiElements[multiElements.length - 1].offsetWidth / 2;
+                var dv = Math.trunc((xmax - xmin) / (multiElements.length - 1));
+                var xpos = multiElements[0].offsetLeft + (multiElements[0].offsetWidth / 2) + dv;
+                for (var i = 1; i < multiElements.length; i++) {
+                    multiElements[i].style.left = (xpos - (multiElements[i].offsetWidth / 2)) + 'px';
+                    xpos += dv;
+                }
+                doSetMoveHandle(currentel);
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuSameWidth() {
+            if (multi) {
+                var w = currentel.style.width;
+                for (var i = 0; i < multiElements.length; i++) {
+                    multiElements[i].style.width = w;
+                }
+            }
+        }
+
+        // helper for docOnMouseDown - hanles menu action...
+        function doMenuSameHeight() {
+            if (multi) {
+                var h = currentel.style.height;
+                for (var i = 0; i < multiElements.length; i++) {
+                    multiElements[i].style.height = h;
+                }
+            }
+        }
+
+        function initMenuBar() {
+            var xpos = 5
+            var ypos = 5;
+            var xs = 50;
+            // i: button text, i+1: button id, i+2: onclick(not used!)
+            var strings = [
+                'Vert Align Top', 'menu-0001', '',
+                'Vert Align Center', 'menu-0002', '',
+                'Vert Align Bottom', 'menu-0003', '',
+                'Horz Align Left', 'menu-0004', '',
+                'Horz Align Middle', 'menu-0005', '',
+                'Horz Align Right', 'menu-0006', '',
+                'Vert Even Space', 'menu-0007', '',
+                'Vert Even Center', 'menu-0008', '',
+                'Horz Even Space', 'menu-0009', '',
+                'Horz Even Center', 'menu-0010', '',
+                'Same width', 'menu-0011', '',
+                'Same height', 'menu-0012', '',
+                //'Cut', 'menu-0013', '',
+                //'Copy', 'menu-0014', '',
+                //'Paste', 'menu-0015', '',
+                //'Group', 'menu-0016', '',
+                //'Ungroup', 'menu-0017', '',
+                //"Toggle Styles Panel", 'menu-0018', ''
+            ];
+
+            for (var i = 0; i < strings.length; i += 3) {
+                xxe('bb', '', strings[i + 1], xpos, ypos, xs, xs, 12, 1, 'solid black', strings[i], '', strings[i + 2], '');
+                xpos += xs + 5;
+            }
+        }
+
+
+
+
+        // handles all mousedown except for elementhandles
+        function docOnMouseDown(event) {
+            var el = doGetElementUnderPos(event.clientX, event.clientY);
+            var a = el.nodeName === 'HTML';
+            var b = el.id.startsWith('thaal');
+            var c = shiftIsPressed;
+            var d = multi;
+            var e = el === currentel;
+            var f = doGetMenuUnderPos(event.clientX, event.clientY);
+
+            //hello("docOnMouseDown: e=" + e + ", d=" + d + ", c=" + c + ", b=" + b + ", a=" + a);
+
+            if (!e & !d & !c & !b & a) {
+                var newid = 'thaal' + getKey();
+                currentel = doCreateNewElementAtPos(event.clientX, event.clientY, newid);
+                doSetAllHandles(currentel);
+            } else if (!e & !d & !c & b & !a) {
+                currentel = doGetElementUnderPos(event.clientX, event.clientY)
+                doSetAllHandles(currentel);
+            } else if (!e & c & !b & a) { //((!e & !d & c & !b & a) | (!e & d & c & !b & a)) {
+                var newid = 'thaal' + getKey();
+                currentel = doCreateNewElementAtPos(event.clientX, event.clientY, newid);
+                doCheckAndAddToMulti(currentel);
+                doSetMoveHandle(currentel);
+            } else if (!e & !d & c & b & !a) {
+                doCheckAndAddToMulti(currentel);
+                currentel = el;
+                doCheckAndAddToMulti(currentel);
+                doSetMoveHandle(currentel);
+            } else if (!e & d & !c & !b & a) {
+                var newid = 'thaal' + getKey();
+                currentel = doCreateNewElementAtPos(event.clientX, event.clientY, newid);
+                doSetAllHandles(currentel);
+                doClearMulti();
+            } else if (!e & d & !c & b & !a) {
+                doClearMulti();
+                currentel = doGetElementUnderPos(event.clientX, event.clientY)
+                doSetAllHandles(currentel);
+            } else if (!e & d & c & b & !a) {
+                currentel = doGetElementUnderPos(event.clientX, event.clientY)
+                doSetMoveHandle(currentel);
+                doCheckAndAddToMulti(currentel);
+            } else if (e & !d & b & !a) {
+                doToggleHandles();
+            } else if (e & d & !c & b & !a) {
+                doClearMulti();
+                doSetAllHandles(currentel);
+            } else if (e & d & c & b & !a) {
+                currentel = doGetElementUnderPos(event.clientX, event.clientY)
+                doCheckAndAddToMulti(currentel);
+            } else if (f === 'menu-0001') {
+                doMenuAlignTop();
+            } else if (f === 'menu-0002') {
+                doMenuAlignCenter();
+            } else if (f === 'menu-0003') {
+                doMenuAlignBottom();
+            } else if (f === 'menu-0004') {
+                doMenuAlignLeft();
+            } else if (f === 'menu-0005') {
+                doMenuAlignMiddle();
+            } else if (f === 'menu-0006') {
+                doMenuAlignRight();
+            } else if (f === 'menu-0007') {
+                doMenuVertEvenSpace();
+            } else if (f === 'menu-0008') {
+                doMenuVertEvenCenter();
+            } else if (f === 'menu-0009') {
+                doMenuHorzEvenSpace();
+            } else if (f === 'menu-0010') {
+                doMenuHorzEvenCenter();
+            } else if (f === 'menu-0011') {
+                doMenuSameWidth();
+            } else if (f === 'menu-0012') {
+                doMenuSameHeight();
+            } else {
+                hello("docOnMouseDown() - NOP: e=" + e + ", d=" + d + ", c=" + c + ", b=" + b + ", a=" + a);
+            }
+        }
+
+        function docOnKeyDown(ev) {
+            var x = ev.which || ev.keyCode;
+            switch (x) {
+                case VK_SHIFT:
+                    shiftIsPressed = true;
+                    break;
+            }
+        }
+
+        function docOnKeyUp(ev) {
+            var x = ev.which || ev.keyCode;
+            switch (x) {
+                case VK_SHIFT:
+                    shiftIsPressed = false;
+                    break;
+            }
+        }
+
+
+
+        /**
+         * Todo...
+         *   top menu med export funktion
+         *   fed toolbar
+         *   Konvertering til andre element typer
+         *   Mardown input prototype
+         */
+
+        const VK_ESC = 27;
+        const VK_SHIFT = 16;
+        const VK_CTRL = 17;
+        const VK_RETURN = 13;
+        const VK_BACKSPACE = 8;
+        const VK_INS = 45;
+        const VK_HOME = 36;
+        const VK_PAGEUP = 33;
+        const VK_DEL = 46;
+        const VK_END = 35;
+        const VK_PAGEDOWN = 34;
+
+        var hndl = [];  // handles
+        var currentel;  // currently selected element
+        var shiftIsPressed = false; // true ig VK_SHIFT is pressed
+        var multi = false; // true if multiple elements is selected
+        var multiElements = []; // array with all seleced elements if multi is true
+
+        initHandles();
+        //        renderGrid(1920, 1080, 50, 50, 0, 0);
+        initMenuBar();
+        document.addEventListener('mousedown', docOnMouseDown);
+        document.addEventListener('keydown', docOnKeyDown);
+        document.addEventListener('keyup', docOnKeyUp);
+
+
+
+        function hello(str) {
+            console.log(str);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        function e(elt, type, id, x, y, width, height, fontsize, borderthickness, borderstyle, text, verticalallign, onclick, oninput) {
+            var newel;
+            switch (elt) {
+                case 'w':
+                case 'work':
+                    var newel = document.createElement('div');
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.cursor = 'pointer';
+                    newel.style.background = 'rgb(200,200,200)';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    document.body.append(newel);
+                    break;
+                case 'b':
+                case 'button':
+                case 'l':
+                case 'label':
+                    var newel = document.createElement('div');
+                    newel.style.boxSizing = 'border-box';
+                    newel.style.overflow = 'hidden';
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //            el.onclick = onclick;
+                    break;
+                case 'i':
+                case 'input':
+                    var newel = document.createElement('input');
+                    newel.type = type;
+                    newel.id = id;
+                    newel.style.position = 'absolute';
+                    newel.style.left = x + 'px';
+                    newel.style.top = y + 'px';
+                    newel.style.width = width + 'px';
+                    newel.style.height = height + 'px';
+                    newel.style.fontSize = fontsize + 'px';
+                    newel.style.border = borderthickness + 'px ' + borderstyle;
+                    newel.style.cursor = 'pointer';
+                    newel.innerText = text;
+                    document.body.append(newel);
+                    //              el.onclick = onclick;
+                    //              el.oninput = oninput;
+                    break;
+
+            }
+
+        }
+
+        var handles = [];
+
+        function addHandle1999(x, y, id) {
+            //console.log('x= ' + x + ', y= ' + y);
+            var el = document.createElement('div');
+            el.id = 'id-' + id;
+            el.style.position = 'absolute';
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.width = '15px';
+            el.style.height = '15px';
+            switch (id) {
+                case 0:
+                case 2:
+                    el.style.cursor = 'ns-resize';
+                    break;
+                case 1:
+                case 3:
+                    el.style.cursor = 'ew-resize';
+                    break;
+                case 4:
+                    el.style.cursor = 'move';
+                    break;
+            }
+            el.style.border = '1px solid black';
+            document.body.append(el);
+            //        el.addEventListener('mouseover', mo);
+            el.addEventListener('mouseup', mdu);
+            el.addEventListener('mousedown', mdo);
+            el.addEventListener('mousemove', mvo);
+            el.addEventListener('drag', mdd);
+        }
+
+        function addHandle(x, y, id) {
+            //console.log('x= ' + x + ', y= ' + y);
+            var el = document.createElement('div');
+            el.id = 'id-' + id;
+            el.style.position = 'absolute';
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            el.style.width = '15px';
+            el.style.height = '15px';
+            switch (id) {
+                case 0:
+                case 2:
+                    el.style.cursor = 'ns-resize';
+                    break;
+                case 1:
+                case 3:
+                    el.style.cursor = 'ew-resize';
+                    break;
+                case 4:
+                    el.style.cursor = 'move';
+                    break;
+            }
+            el.style.border = '1px solid black';
+            document.body.append(el);
+            dte('id-' + id);
+        }
+
+        function setHandles(elid) {
+            var el = document.getElementById(elid);
+            if (el != null) {
+                var ebr = el.getBoundingClientRect();
+                addHandle(ebr.left + (ebr.right - ebr.left) / 2 - 7, ebr.top - 8, 0);
+                //            addHandle(ebr.left - 8, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 1);
+                //            addHandle(ebr.left + (ebr.right - ebr.left) / 2 - 7, ebr.bottom - 8, 2);
+                //            addHandle(ebr.right - 8, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 3);
+                //            addHandle(ebr.left + (ebr.right - ebr.left) / 2 - 7, ebr.top + (ebr.bottom - ebr.top) / 2 - 8, 4);
+            }
+        }
+
+        var dragging = false;
+
+        function mdu() {
+            dragging = false;
+        }
+
+        function mdo() {
+            //        console.log('draggging');
+
+            dragging = true;
+        }
+
+        var top, left, height, width;
+
+        function mvo(e) {
+            //        console.log('Mooooving : ' + dragging);
+        }
+
+        function mdd(e) {
+            //        var el = document.querySelector(":hover");
+            switch (this.id) {
+                case 'id-0': // top
+                    var el = document.getElementById('theel');
+                    el.style.top = (e.clientY + 8) + 'px';
+                    this.style.top = (e.clientY) + 'px';
+                    el.style.height = (document.getElementById('id-2').getBoundingClientRect().bottom - e.clientY - 16) + 'px';
+                    var ebr = el.getBoundingClientRect();
+                    var newy = ebr.top + ebr.height / 2 - 8;
+                    document.getElementById('id-1').style.top =
+                        document.getElementById('id-4').style.top =
+                        document.getElementById('id-3').style.top = newy + 'px';
+                    break;
+                case 'id-2': // bottom
+                    var el = document.getElementById('theel');
+                    var ebr = el.getBoundingClientRect();
+                    el.style.height = (e.clientY - ebr.top + 8) + 'px';
+                    this.style.top = e.clientY + 'px';
+                    var ebr = el.getBoundingClientRect();
+                    var newy = ebr.top + ebr.height / 2 - 8;
+                    document.getElementById('id-1').style.top =
+                        document.getElementById('id-4').style.top =
+                        document.getElementById('id-3').style.top = newy + 'px';
+                    break;
+                case 'id-1': // left
+                    this.style.left = e.clientX + 'px';
+                    document.getElementById('theel').style.left = e.clientX + 8 + 'px';
+                    var neww = (document.getElementById('id-3').getBoundingClientRect().left - e.clientX);
+                    document.getElementById('theel').style.width = neww + 'px';
+                    document.getElementById('id-0').style.left =
+                        document.getElementById('id-4').style.left =
+                        document.getElementById('id-2').style.left = e.clientX + (Math.trunc(neww / 2)) + 'px';
+                    break;
+                case 'id-3': // right
+                    this.style.left = e.clientX + 'px';
+                    var el = document.getElementById('theel');
+                    var neww = e.clientX - document.getElementById('id-1').getBoundingClientRect().left;
+                    el.style.width = neww + 'px';
+                    document.getElementById('id-0').style.left =
+                        document.getElementById('id-2').style.left =
+                        document.getElementById('id-4').style.left =
+                        document.getElementById('id-1').getBoundingClientRect().left + (Math.trunc(neww / 2)) + 'px';
+                    break;
+                case 'id-4': // middle
+                    document.getElementById('id-0').style.left =
+                        document.getElementById('id-2').style.left =
+                        this.style.left = (e.clientX - 8) + 'px';
+                    document.getElementById('id-1').style.top =
+                        document.getElementById('id-3').style.top =
+                        this.style.top = (e.clientY - 8) + 'px';
+                    var el = document.getElementById('theel');
+                    var ebr = el.getBoundingClientRect();
+                    el.style.left = (e.clientX - ebr.width / 2) + 'px';
+                    document.getElementById('id-1').style.left = (e.clientX - 8 - ebr.width / 2) + 'px';
+                    document.getElementById('id-3').style.left = (e.clientX - 8 + ebr.width / 2) + 'px';
+                    el.style.top = (e.clientY - ebr.height / 2) + 'px';
+                    document.getElementById('id-0').style.top = (e.clientY - 8 - ebr.height / 2) + 'px';
+                    document.getElementById('id-2').style.top = (e.clientY - 8 + ebr.height / 2) + 'px';
+                    break;
+            }
+            //        console.log("drag: " + e.clientX);
+        }
+
+        function dte(elmnt) {
+            console.log('dte: ' + elmnt);
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id)) {
+                document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+
+        e('w', '', 'theel', 500, 300, 500, 300, 20, 0, '', 'hello', '', '', '');
+        setHandles('theel');
+    </script>
+</body>
+
+</html>
