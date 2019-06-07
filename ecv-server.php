@@ -106,26 +106,33 @@ for ($dd = 1; $dd < 8; $dd++) {
 }
 
 // rendering small and big calendar
+$hw = 60;
 $ypos = 96;
 $ypos2 = 50;
 $weekchange = true;
-for ($dd = 1; $dd < 32; $dd++) {
+for ($dd = 1; $dd < 286; $dd++) {
+    /*
     $sd = intval(date('N', mktime(0, 0, 0, $m, $dd, $y)));
     if ($weekchange) {
         e('l', '',12, $ypos, 32, 32, 18, 1, 'solid black', intval(date('W', mktime(0, 0, 0, $m, $dd, $y))), 'c', '', '');
     }
     $xpos = 26 + $sd * 33;
     e('b', '', $xpos, $ypos, 32, 32, 10, 1, 'solid black', $dd, 'c', '', '');
+    */
 
+    /*
     $xpos = 388 + (($sd - 1) % 7) * ($hw + 1) * 3;
     e('l', '',$xpos, $ypos2, $hw, $hw, 36, 1, 'solid gray', $dd, 'c', '', '', '');
     for ($se = 1; $se < 9; $se++) {
         e('b', '', $xpos + ($hw - 1) * ($se % 3), $ypos2 + ($hw - 1) * floor($se / 3), $hw, $hw, 10, 1, 'solid gray', '', 'c', '', '');
     }
+    */
 
-    if ($sd == 7) {
-        $ypos += 33;
-        $ypos2 += ($hw + 1) * 3;
+    $xpos = 388 + (($dd - 1) % 19) * ($hw + 1);
+    e('l', '',$xpos, $ypos2, $hw, $hw, 20, 1, 'solid gray', $dd, 'c', '', '', '');
+
+    if (($dd % 19) == 0) {
+        $ypos2 += ($hw + 1);
     }
 }
 
