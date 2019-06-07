@@ -86,58 +86,23 @@ if (($m < 1) || ($m > 12)) {
     $m = intval(date('m'));
 }
 
-$kd = array("mon", "tue", "wed", "thu", "fri", "sat", "sun");
-$kd2 = array("monday", "tuesday", "wedensday", "thursday", "friday", "saturday", "sunday");
+e('l', '',2, 5, 220, 32, 29, 0, '', 'Some name', '', '', '');
 
-e('l', '',2, 5, 220, 32, 29, 0, '', $y . ' ' . date('F', mktime(0, 0, 0, $m, 1, $y)), '', '', '');
-e('b', '', 224, 5, 32, 32, 29, 1, 'solid black', '+', 'c', '', '');
-e('b', '', 257, 5, 32, 32, 29, 1, 'solid black', '-', 'c', '', '');
-
-// rendering daynames 
+// rendering the  matrix
 $hw = 60;
-for ($dd = 1; $dd < 8; $dd++) {
-    $ypos = 50;
-    $xpos = 26 + $dd * 33;
-    e('l', '',$xpos, $ypos, 32, 32, 10, 1, 'solid black', $kd[$dd - 1], 'c', '', '');
-
-    $ypos = 5;
-    $xpos = 388 + ($dd - 1) * ($hw + 1) * 3;
-    e('l', '',$xpos, $ypos, $hw * 3, 32, 24, 0, '', $kd2[$dd - 1], 'c', '', '');
-}
-
-// rendering small and big calendar
-$hw = 60;
-$ypos = 96;
-$ypos2 = 50;
+$ypos = 5;
 $weekchange = true;
-for ($dd = 1; $dd < 286; $dd++) {
-    /*
-    $sd = intval(date('N', mktime(0, 0, 0, $m, $dd, $y)));
-    if ($weekchange) {
-        e('l', '',12, $ypos, 32, 32, 18, 1, 'solid black', intval(date('W', mktime(0, 0, 0, $m, $dd, $y))), 'c', '', '');
-    }
-    $xpos = 26 + $sd * 33;
-    e('b', '', $xpos, $ypos, 32, 32, 10, 1, 'solid black', $dd, 'c', '', '');
-    */
-
-    /*
-    $xpos = 388 + (($sd - 1) % 7) * ($hw + 1) * 3;
-    e('l', '',$xpos, $ypos2, $hw, $hw, 36, 1, 'solid gray', $dd, 'c', '', '', '');
-    for ($se = 1; $se < 9; $se++) {
-        e('b', '', $xpos + ($hw - 1) * ($se % 3), $ypos2 + ($hw - 1) * floor($se / 3), $hw, $hw, 10, 1, 'solid gray', '', 'c', '', '');
-    }
-    */
-
+for ($dd = 1; $dd < 305; $dd++) {
     $xpos = 388 + (($dd - 1) % 19) * ($hw + 1);
-    e('l', '',$xpos, $ypos2, $hw, $hw, 20, 1, 'solid gray', $dd, 'c', '', '', '');
+    e('l', '',$xpos, $ypos, $hw, $hw, 20, 1, 'solid gray', $dd, 'c', '', '', '');
 
     if (($dd % 19) == 0) {
-        $ypos2 += ($hw + 1);
+        $ypos += ($hw + 1);
     }
 }
 
 // input field
-e('i', 'thomas', 12, 308, 277, 32, 18, 1, 'solid black', '', '%', '', '');
+e('i', 'thomas', 5, 40, 285, 32, 18, 1, 'solid black', '', '%', '', '');
 
 // render charset
 $arr = array(
@@ -198,7 +163,7 @@ $lc = 0;
 $tx = 862;
 
 // emojis
-echo '<div style="position: absolute; overflow-y: scroll; left: 1px; top: 350px; width: 294px; height: 650px">';
+echo '<div style="position: absolute; overflow-y: scroll; left: 1px; top: 90px; width: 294px; height: 890px">';
 
 echo '<div id="g1x">';
 for ($m = 0; $m < count($arr); $m += 2) {
