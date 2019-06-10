@@ -1,7 +1,7 @@
 
 
 var tick = 0;
-function display() {
+function displayTrademarkAnimation() {
     var sx = 20; // the size
     var sy = 10; // the size
     var tx = 3;
@@ -25,5 +25,5 @@ function display() {
     context.fillRect(tx + 6 * sx, ty + 4 * sy, 1 * sx, 2 * sy);
 }
 
-setInterval(display, 50);
+setInterval(displayTrademarkAnimation, 50);
 
